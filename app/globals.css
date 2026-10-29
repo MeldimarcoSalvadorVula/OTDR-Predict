@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-elevated: var(--elevated);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-signal: var(--signal);
+  --color-violet: var(--violet);
+
+  --color-risk-low: var(--risk-low);
+  --color-risk-medium: var(--risk-medium);
+  --color-risk-high: var(--risk-high);
+  --color-risk-failed: var(--risk-failed);
+
+  --color-chart-1: var(--primary);
+  --color-chart-2: var(--signal);
+  --color-chart-3: var(--risk-medium);
+  --color-chart-4: var(--risk-high);
+  --color-chart-5: var(--risk-failed);
+
+  --color-sidebar: var(--surface);
+  --color-sidebar-foreground: var(--foreground);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-sidebar-accent: var(--elevated);
+  --color-sidebar-accent-foreground: var(--foreground);
+  --color-sidebar-border: var(--border);
+  --color-sidebar-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  color-scheme: dark;
+  --radius: 0.5rem;
+
+  --background: #080d18;
+  --surface: #0b1220;
+  --card: #111b2c;
+  --card-foreground: #e6edf7;
+  --elevated: #172338;
+  --popover: #172338;
+  --popover-foreground: #e6edf7;
+  --foreground: #e6edf7;
+  --muted: #142036;
+  --muted-foreground: #8b98ae;
+  --primary: #48d9f5;
+  --primary-foreground: #04121a;
+  --secondary: #172338;
+  --secondary-foreground: #e6edf7;
+  --accent: #172338;
+  --accent-foreground: #e6edf7;
+  --signal: #668bff;
+  --violet: #a78bfa;
+  --destructive: #ff4d5e;
+  --border: #1d2a40;
+  --input: #22314a;
+  --ring: #48d9f5;
+
+  --risk-low: #34d399;
+  --risk-medium: #f5b544;
+  --risk-high: #ff8a3d;
+  --risk-failed: #ff4d5e;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility surface-card {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--card) 100%, white 2%) 0%, var(--card) 100%);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.03) inset,
+    0 12px 32px -18px rgb(0 0 0 / 0.6);
+}
+
+@keyframes signal-travel {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+@utility animate-signal {
+  animation: signal-travel 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
